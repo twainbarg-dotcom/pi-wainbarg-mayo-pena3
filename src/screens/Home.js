@@ -35,7 +35,8 @@ function Home(props) {
 
             setLoading(false);
 
-        });
+        }); 
+        console.log(auth.currentUser)
 
     }, []);
     return (

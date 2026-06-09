@@ -9,7 +9,7 @@ function Profile(props) {
     const [posteo, setPosteo] = useState([]);
     
         const [loading, setLoading] = useState(true);
-    
+    const [nombre, setNombre] = useState("")
         useEffect(() => {
     
             db.collection("Posts").onSnapshot(docs => {
@@ -34,11 +34,32 @@ function Profile(props) {
                 setLoading(false);
     
             });
-    
+            console.log(props)
         }, []);
+        useEffect(() => {
+
+    db.collection("users")
+
+        
+        .doc(props.id)
+        
+
+        .then(docs => {
+
+            docs.forEach(doc => {
+
+                setNombre(doc.data().name);
+
+            });
+
+        });
+
+}, []);
+
     return (
         <View>
-            <text>{auth.currentUser.email}</text>
+            <Text>{auth.currentUser.email}</Text>
+            <Text>{nombre}</Text>
             <FlatList
                 data={posteo}
                 keyExtractor={item => item.id.toString()}
