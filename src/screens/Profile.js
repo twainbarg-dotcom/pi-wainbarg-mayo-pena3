@@ -9,10 +9,11 @@ function Profile(props) {
     const [posteo, setPosteo] = useState([]);
     
         const [loading, setLoading] = useState(true);
+    const [usuario, setUsuario] = useState("")
     const [nombre, setNombre] = useState("")
         useEffect(() => {
     
-            db.collection("Posts").onSnapshot(docs => {
+            db.collection("Posts").where('owner','==',auth.currentUser.email).onSnapshot(docs => {
     
                 let posteo = [];
     
@@ -38,23 +39,23 @@ function Profile(props) {
         }, []);
         useEffect(() => {
 
-    db.collection("users")
-
-        
-        .doc(props.id)
-        
-
-        .then(docs => {
-
+    db.collection("users").where('owner','==',auth.currentUser.email).onSnapshot(docs => {
             docs.forEach(doc => {
-
-                setNombre(doc.data().name);
-
+                const data = doc.data();
+                setUsuario(data);
+                console.log(data);
+                setNombre(usuario.description)
+            })
+            
+    
+            
             });
+            console.log(props)
+        }, []);
 
-        });
+ 
 
-}, []);
+
 
     return (
         <View>
