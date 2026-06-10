@@ -11,6 +11,7 @@ function Profile(props) {
         const [loading, setLoading] = useState(true);
     const [usuario, setUsuario] = useState("")
     const [nombre, setNombre] = useState("")
+
         useEffect(() => {
     
             db.collection("Posts").where('owner','==',auth.currentUser.email).onSnapshot(docs => {
@@ -38,24 +39,31 @@ function Profile(props) {
             console.log(props)
         }, []);
         useEffect(() => {
-
-    db.collection("users").where('owner','==',auth.currentUser.email).onSnapshot(docs => {
-            docs.forEach(doc => {
-                const data = doc.data();
-                setUsuario(data);
-                console.log(data);
-                setNombre(usuario.description)
-            })
+            console.log("entre al useEffect");
+            console.log(auth.currentUser.email);
             
+    db.collection("users").where('owner','==',auth.currentUser.email).onSnapshot(
+            docs => {
+                let posts = [];
+                 docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data:doc.data()
+                    })
+
+            })
+                setUsuario(posts)
+                console.log(usuario)
     
             
             });
-            console.log(props)
+            
         }, []);
 
  
 
-
+        console.log(usuario);
+        
 
     return (
         <View>

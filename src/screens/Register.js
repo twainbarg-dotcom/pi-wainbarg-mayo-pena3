@@ -8,7 +8,7 @@ function Register(props) {
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
 
-    function OnSubmit(email, pass) {
+    function OnSubmit(email, pass, name) {
         auth.createUserWithEmailAndPassword(email, pass)
             .then(response => {
                 props.navigation.navigate('Login');

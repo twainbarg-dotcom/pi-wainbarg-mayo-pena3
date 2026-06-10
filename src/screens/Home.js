@@ -14,7 +14,7 @@ function Home(props) {
 
     useEffect(() => {
 
-        db.collection("Posts").onSnapshot(docs => {
+        db.collection("Posts").orderBy('createdAt','desc').onSnapshot(docs => {
 
             let posteo = [];
 
