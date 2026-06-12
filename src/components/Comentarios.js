@@ -3,20 +3,35 @@ import { StyleSheet } from "react-native";
 import { Text } from "react-native";
 import { View, Pressable, TextInput } from "react-native";
 
+import { auth, db } from "../firebase/config";
+import firebase from "firebase";
+
 function Comentarios(props) {
-    const [comentarios , setComentarios] = useState ("")
-    const OnSubmit = () => {console.log (comentarios)}
+    const [comentario , setComentario] = useState ("")
+     function onSubmit() {
+        db.collection('Posts')
+            .doc(props.id)
+            .update({
+                comentarios: firebase.firestore.FieldValue.arrayUnion({
+                    owner: auth.currentUser.email,
+                    comentario: comentario,
+                    createdAt: Date.now()
+                })
+            })
+            .then(() => {
+                setComentario("")
+            })
+    }
     return (
         <View style={styles.container}>
-            <Text>Comentarios</Text>
             <TextInput style={styles.field}
                 keyboardType='default'
                 placeholder='comentario'
-                onChangeText={text => setComentarios(text)}
-                value={comentarios} />
+                onChangeText={text => setComentario(text)}
+                value={comentario} />
             
             <Pressable onPress={() => onSubmit()}>
-                <Text style = {styles.text}> Subir comentarios </Text>
+                <Text style = {styles.text}> Subir comentario </Text>
             </Pressable>
         </View>
     )

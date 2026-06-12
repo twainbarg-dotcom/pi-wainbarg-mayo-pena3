@@ -49,6 +49,10 @@ function Post(props) {
                 onPress={() => Like()} style= {styles.likes}>
                 <Text style={styles.like}>{like} </Text>
             </Pressable>
+            <Pressable
+                onPress={() => props.navigation.navigate('ComentarPosteo', { id: props.id })} style={styles.likes}>
+                <Text style={styles.like}>Comentar</Text>
+            </Pressable>
         </View>
     )
 }
