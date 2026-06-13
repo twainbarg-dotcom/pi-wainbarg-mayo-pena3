@@ -9,54 +9,59 @@ function Register(props) {
     const [name, setName] = useState("")
 
     function OnSubmit(email, pass, name) {
+        if (email === "" || pass === "" || name === "") {
+            alert("Completá todos los campos");
+            return;
+        }
         auth.createUserWithEmailAndPassword(email, pass)
             .then(response => {
-                props.navigation.navigate('Login');
+                return db.collection("users").add({
+                    owner: response.user.email,
+                    name: name,
+                    createdAt: Date.now()
+                });
+            })
+            .then(() => {
+                props.navigation.navigate("Login");
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                alert(error.message);
+            });
 
 
-
-            })
-        db.collection('users').add({
-            owner: auth.currentUser.email,
-            description: {name},
-            createdAt: Date.now(),
-        })
-            .then()
-            .catch(e => console.log(e))
 
     }
 
-    return (
-        <View style={styles.pres}>
-            <Text>Datos para registrarse</Text>
-            <TextInput style={styles.field}
-                keyboardType='email-address'
-                placeholder='email'
-                onChangeText={text => setEmail(text)}
-                value={email} />
-            <TextInput style={styles.field}
-                keyboardType='default'
-                placeholder='Nombre'
-                onChangeText={text => setName(text)}
-                value={name} />
-            <TextInput style={styles.field}
-                keyboardType='default'
-                placeholder='password'
-                secureTextEntry={true}
-                onChangeText={text => setPassword(text)}
-                value={password} />
-            <Pressable onPress={() => OnSubmit(email, password)}>
-                <Text style={styles.text}> Login </Text>
-            </Pressable>
-            <Pressable
-                onPress={() => props.navigation.navigate('Login')}>
-                <Text style={styles.text}>Ya tengo cuenta </Text>
-            </Pressable>
-        </View>
-    )
+
+return (
+    <View style={styles.pres}>
+        <Text>Datos para registrarse</Text>
+        <TextInput style={styles.field}
+            keyboardType='email-address'
+            placeholder='email'
+            onChangeText={text => setEmail(text)}
+            value={email} />
+        <TextInput style={styles.field}
+            keyboardType='default'
+            placeholder='Nombre'
+            onChangeText={text => setName(text)}
+            value={name} />
+        <TextInput style={styles.field}
+            keyboardType='default'
+            placeholder='password'
+            secureTextEntry={true}
+            onChangeText={text => setPassword(text)}
+            value={password} />
+        <Pressable onPress={() => OnSubmit(email, password, name)}>
+            <Text style={styles.text}> Registrarme </Text>
+        </Pressable>
+        <Pressable
+            onPress={() => props.navigation.navigate('Login')}>
+            <Text style={styles.text}>Ya tengo cuenta </Text>
+        </Pressable>
+    </View>
+)
 }
 const styles = StyleSheet.create({
     pres: {

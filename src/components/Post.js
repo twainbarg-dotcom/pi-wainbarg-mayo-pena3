@@ -1,53 +1,39 @@
-import { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
 
 import firebase from "firebase";
 
-
-
-
-
-
 function Post(props) {
-    const [like, setLike] = useState("Like")
-    const [CantLike, setCant] = useState(0)
+    const likes = props.data.likes || [];
+    const emailUsuario = auth.currentUser.email;
+    const yaDioLike = likes.includes(emailUsuario);
+   
     function Like() {
-        if (like == "Like") {
-            db.collection('Posts')
+        db.collection('Posts')
                 .doc(props.id)
                 .update({
-                    likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-                })
-                .then(() => {
-                    setLike("Sacar like")
-                    setCant( CantLike + 1) 
+                    likes: yaDioLike
+                    ? firebase.firestore.FieldValue.arrayRemove(emailUsuario)
+                    : firebase.firestore.FieldValue.arrayUnion(emailUsuario) 
 
                 })
-        }
-        else{
-            db.collection('Posts')
-                .doc(props.id)
-                .update({
-                    likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-                })
-                .then(() => {
-                    setLike("Like")
-                    setCant(CantLike - 1) 
-
-                })
-        }
+        .catch(error => {
+                console.log(error);
+                alert("No se pudo actualizar el like");
+            });
+    
+        
 
     }
     return (
         <View style={styles.container} >
             <Text>{props.data.owner}</Text>
             <Text style= {styles.publicacion}>{props.data.content}</Text>
-            <Text style= {styles.conteo}>La publicacion tiene {CantLike} likes</Text>
+            <Text style= {styles.conteo}>La publicacion tiene {likes.length} likes</Text>
             <Pressable
                 onPress={() => Like()} style= {styles.likes}>
-                <Text style={styles.like}>{like} </Text>
+                <Text style={styles.like}>{yaDioLike ? "Sacar like" : "Me gusta"} </Text>
             </Pressable>
             <Pressable
                 onPress={() => props.navigation.navigate('ComentarPosteo', { id: props.id })} style={styles.likes}>
