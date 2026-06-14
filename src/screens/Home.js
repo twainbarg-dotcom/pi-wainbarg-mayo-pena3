@@ -40,7 +40,7 @@ function Home(props) {
 
     }, []);
     return (
-        <View>
+        <View style={styles.flatlist}>
 
             <FlatList
                 data={posteo}
@@ -50,5 +50,12 @@ function Home(props) {
 
     )
 }
+
+const styles = StyleSheet.create({
+  flatlist: {
+    width: '100%',
+    flex: 1
+  },
+})
 
 export default Home
