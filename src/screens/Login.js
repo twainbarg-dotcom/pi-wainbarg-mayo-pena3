@@ -9,6 +9,13 @@ function Login(props) {
     const [password, setPassword] = useState("")
 
 
+    useEffect(() => auth.onAuthStateChanged(user => {
+        if (user){
+            props.navigation.navigate("HomeMenu")
+        }
+    }), [])
+
+
 
     function OnSubmit(email, pass) {
         if (!email.includes("@")) {
