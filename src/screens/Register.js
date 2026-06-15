@@ -22,8 +22,12 @@ function Register(props) {
                 });
             })
             .then(() => {
-                props.navigation.navigate("Login");
+               return auth.signOut();
             })
+            .then(() => {
+               props.navigation.navigate("Login");
+            })
+
             .catch(error => {
                 console.log(error);
                 alert(error.message);
