@@ -5,23 +5,27 @@ import { auth, db } from "../firebase/config";
 import firebase from "firebase";
 
 function Post(props) {
-    const likes = props.data.likes || [];
-    const emailUsuario = auth.currentUser.email;
-    const yaDioLike = likes.includes(emailUsuario);
    
     function Like() {
+       if (props.data.likes.includes(auth.currentUser.email)) {
         db.collection('Posts')
                 .doc(props.id)
                 .update({
-                    likes: yaDioLike
-                    ? firebase.firestore.FieldValue.arrayRemove(emailUsuario)
-                    : firebase.firestore.FieldValue.arrayUnion(emailUsuario) 
-
+                    likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)                
                 })
-        .catch(error => {
-                console.log(error);
-                alert("No se pudo actualizar el like");
-            });
+                .catch(error => console.log(error));
+               
+            } else {
+              db.collection("Posts")
+                .doc(props.id)
+                .update({
+                    likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+                })
+                .catch(error => console.log(error));
+
+        }
+        
+
     
         
 
@@ -30,10 +34,10 @@ function Post(props) {
         <View style={styles.container} >
             <Text style= {styles.nombre}>{props.data.owner}</Text>
             <Text style= {styles.publicacion}>{props.data.content}</Text>
-            <Text style= {styles.conteo}>La publicacion tiene {likes.length} likes</Text>
+            <Text style= {styles.conteo}>La publicacion tiene {props.data.likes.length} likes</Text>
             <Pressable
                 onPress={() => Like()} style= {styles.likes}>
-                <Text style={styles.like}>{yaDioLike ? "Sacar like" : "Me gusta"} </Text>
+                <Text style={styles.like}>{props.data.likes.includes(auth.currentUser.email) ? "Sacar like" : "Me gusta"} </Text>
             </Pressable>
             <Pressable
                 onPress={() => props.navigation.navigate('ComentarPosteo', { id: props.id })} style={styles.likes}>
