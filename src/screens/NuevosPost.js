@@ -23,11 +23,11 @@ function NuevosPosts(props) {
 
     return (
         <View style={styles.container}>
-            <Text>Nuevo posteo</Text>
+            <Text style={styles.titulo}>Nuevo posteo</Text>
             
             <TextInput style={styles.field}
                 keyboardType='default'
-                placeholder='Comentarios'
+                placeholder='Escribi tu posteo'
                 secureTextEntry={false}
                 onChangeText={text => setComentarios(text)}
                 value={comentarios} />
@@ -41,35 +41,51 @@ function NuevosPosts(props) {
     )
 }
 const styles = StyleSheet.create({
+
     container: {
-        padding: 20,
-        marginTop: 10,
+
+        flex: 1,
+        backgroundColor: "#F4F5F7",
+        padding: 24,
+        justifyContent: "center",
 
     },
+
     field: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
+
+        backgroundColor: "#FFFFFF",
+        paddingVertical: 16,
+        paddingHorizontal: 16,
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: "solid",
-        borderRadius: 6,
-        marginVertical: 10,
+        borderColor: "#E1E4E8",
+        borderRadius: 16,
+        marginVertical: 12,
+        fontSize: 15,
+        color: "#111827",
 
     },
 
     text: {
 
-        backgroundColor: "white",
-
-        margin: 10,
-
+        backgroundColor: "#111827",
+        color: "#FFFFFF",
+        textAlign: "center",
+        marginTop: 10,
         padding: 15,
+        borderRadius: 14,
+        fontWeight: "bold",
+        fontSize: 15,
+       
 
-        borderRadius: 10,
+    }, 
+    titulo: {
 
-        elevation: 4
+        fontSize: 26,
+        fontWeight: "bold",
+        color: "#111827",
+        marginBottom: 8,
+
     }
-})
 
+});
 export default NuevosPosts

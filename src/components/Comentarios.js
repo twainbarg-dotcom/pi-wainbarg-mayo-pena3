@@ -37,34 +37,45 @@ function Comentarios(props) {
     )
 }
 const styles = StyleSheet.create({
+
     container: {
-        padding: 20,
-        marginTop: 10,
+
+        backgroundColor: "#FFFFFF",
+        padding: 14,
+        borderRadius: 18,
+        marginTop: 12,
+        shadowColor: "#000",
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        
 
     },
+
     field: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
+
+        backgroundColor: "#F9FAFB",
+        paddingVertical: 14,
+        paddingHorizontal: 16,
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: "solid",
-        borderRadius: 6,
-        marginVertical: 10,
+        borderColor: "#E1E4E8",
+        borderRadius: 14,
+        marginBottom: 10,
+        fontSize: 15,
+        color: "#111827",
 
     },
 
     text: {
 
-        backgroundColor: "white",
+        backgroundColor: "#111827",
+        color: "#FFFFFF",
+        textAlign: "center",
+        padding: 14,
+        borderRadius: 14,
+        fontWeight: "bold",
+        fontSize: 15,
 
-        margin: 10,
-
-        padding: 15,
-
-        borderRadius: 10,
-
-        elevation: 4
     }
-})
+
+});
 export default Comentarios

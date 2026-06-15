@@ -21,7 +21,7 @@ function HomeMenu (){
         <Tab.Screen name="Home" component={ HomeStack } options={ { headerShown: false, tabBarIcon: () => <AntDesign name="home" size={24} color="black" /> } }/>
         <Tab.Screen name="Profile" component={ Profile } options={ { headerShown: false }, { tabBarIcon: () => <AntDesign name="profile" size={24} color="black" /> }}/>
         
-        <Tab.Screen name="Nuevos Posts" component={ NuevosPosts } options={ { headerShown: false }, { tabBarIcon: () => <AntDesign name="post" size={24} color="black" /> }}/>
+        <Tab.Screen name="Nuevos Posts" component={ NuevosPosts } options={ { headerShown: false }, { tabBarIcon: () => <AntDesign name="plus" size={24} color="black" /> }}/>
      </Tab.Navigator>
    
     )

@@ -4,7 +4,7 @@ import { db } from "../firebase/config";
 import Comentarios from "../components/Comentarios";
 
 function ComentarPosteo(props){
-    const  id = props.route.params 
+    const  id = props.route.params.id 
 
     const [comentarios, setComentarios] = useState([])
     const [loading, setLoading] = useState(true)
@@ -45,25 +45,46 @@ function ComentarPosteo(props){
     )
 }
 const styles = StyleSheet.create({
+
     container: {
+
         flex: 1,
         padding: 20,
-        backgroundColor: "white"
+        backgroundColor: "#F4F5F7",
+
     },
+
     titulo: {
+
+        fontSize: 26,
         fontWeight: "bold",
-        marginBottom: 10
+        color: "#111827",
+        marginBottom: 20,
+
     },
+
     comentario: {
-        padding: 10,
-        marginVertical: 5,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 6
+
+        backgroundColor: "#FFFFFF",
+        padding: 16,
+        marginVertical: 8,
+        borderRadius: 16,
+        shadowColor: "#000",
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        
+
     },
+
     owner: {
-        fontWeight: "bold"
+
+        fontWeight: "bold",
+        fontSize: 15,
+        color: "#111827",
+        marginBottom: 6,
+
     }
+
 });
 
 export default ComentarPosteo
