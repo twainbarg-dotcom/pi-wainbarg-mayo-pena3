@@ -4,7 +4,7 @@ import { db } from "../firebase/config";
 import Comentarios from "../components/Comentarios";
 
 function ComentarPosteo(props){
-    const  {id} = props.route.params 
+    const  id = props.route.params 
 
     const [comentarios, setComentarios] = useState([])
     const [loading, setLoading] = useState(true)

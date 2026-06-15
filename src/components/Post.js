@@ -28,7 +28,7 @@ function Post(props) {
     }
     return (
         <View style={styles.container} >
-            <Text>{props.data.owner}</Text>
+            <Text style= {styles.nombre}>{props.data.owner}</Text>
             <Text style= {styles.publicacion}>{props.data.content}</Text>
             <Text style= {styles.conteo}>La publicacion tiene {likes.length} likes</Text>
             <Pressable
@@ -46,35 +46,60 @@ function Post(props) {
 
 const styles = StyleSheet.create({
 
-  like: {
+  container: {
 
-    fontWeight: "bold",
-
-  },
-  publicacion:{
-    marginBottom: 10,
-    backgroundColor: "pink",
-    display:"flex",
-    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    width: "90%",
+    alignSelf: "center",
+    marginVertical: 14,
+    padding: 18,
+    borderRadius: 18,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
     
 
   },
-  likes:{
-    backgroundColor: "grey",
-    width: 100,
-    alignItems: "center",
-    justifyContent:"center"
+
+  publicacion: {
+    fontSize: 16,
+    color: "#1F2937",
+    marginVertical: 14,
+    lineHeight: 22,
+
   },
-  container: {
-    display:"flex",
-    justifyContent:"center",
-    textAlign:"center",
-    backgroundColor:"white",
-    width: 300,
-    margin: 50,
-    padding: 20,
-    height: 200
-  }
+
+  conteo: {
+
+    color: "#6B7280",
+    marginBottom: 12,
+    fontSize: 14,
+
+  },
+
+  likes: {
+
+    backgroundColor: "#111827",
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    alignItems: "center",
+    marginTop: 8,
+
+  },
+
+  like: {
+
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 14,
+
+  },
+  nombre: { 
+    fontWeight: "bold",
+     color: "#111827",
+      fontSize: 15 
+    }
 
 });
 export default Post

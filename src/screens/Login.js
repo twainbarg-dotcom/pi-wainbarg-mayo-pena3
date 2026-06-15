@@ -49,7 +49,7 @@ function Login(props) {
     }
     return (
         <View style={styles.container}>
-            <Text>Datos para login</Text>
+            <Text style={styles.titulo}>Datos para login</Text>
             <TextInput style={styles.field}
                 keyboardType='email-address'
                 placeholder='email'
@@ -74,36 +74,59 @@ function Login(props) {
     )
 }
 const styles = StyleSheet.create({
+
     container: {
-        padding: 20,
-        marginTop: 10,
+
+        flex: 1,
+
+        padding: 24,
+
+        justifyContent: "center",
+
+        backgroundColor: "#F4F5F7",
 
     },
+
     field: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
+
+        backgroundColor: "#FFFFFF",
+
+        paddingVertical: 14,
+
+        paddingHorizontal: 16,
+
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: "solid",
-        borderRadius: 6,
+
+        borderColor: "#E1E4E8",
+
+        borderRadius: 14,
+
         marginVertical: 10,
+
+        fontSize: 15,
+
+        color: "#111827",
 
     },
 
     text: {
 
-        backgroundColor: "white",
-
-        margin: 10,
-
+        backgroundColor: "#111827",
+        color: "#FFFFFF",
+        textAlign: "center",
+        marginVertical: 8,
         padding: 15,
+        borderRadius: 14,
+        fontWeight: "bold",
+        fontSize: 15,
+    },
+    titulo: { 
+        fontSize: 26, 
+        fontWeight: "bold", 
+        marginBottom: 20, 
+        color: "#111827" }
 
-        borderRadius: 10,
-
-        elevation: 4
-    }
-})
+});
 
 
 export default Login

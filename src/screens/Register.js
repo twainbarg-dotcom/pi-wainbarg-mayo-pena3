@@ -34,64 +34,81 @@ function Register(props) {
     }
 
 
-return (
-    <View style={styles.pres}>
-        <Text>Datos para registrarse</Text>
-        <TextInput style={styles.field}
-            keyboardType='email-address'
-            placeholder='email'
-            onChangeText={text => setEmail(text)}
-            value={email} />
-        <TextInput style={styles.field}
-            keyboardType='default'
-            placeholder='Nombre'
-            onChangeText={text => setName(text)}
-            value={name} />
-        <TextInput style={styles.field}
-            keyboardType='default'
-            placeholder='password'
-            secureTextEntry={true}
-            onChangeText={text => setPassword(text)}
-            value={password} />
-        <Pressable onPress={() => OnSubmit(email, password, name)}>
-            <Text style={styles.text}> Registrarme </Text>
-        </Pressable>
-        <Pressable
-            onPress={() => props.navigation.navigate('Login')}>
-            <Text style={styles.text}>Ya tengo cuenta </Text>
-        </Pressable>
-    </View>
-)
+    return (
+        <View style={styles.pres}>
+            <Text style= {styles.titulo}>Datos para registrarse</Text>
+            <TextInput style={styles.field}
+                keyboardType='email-address'
+                placeholder='email'
+                onChangeText={text => setEmail(text)}
+                value={email} />
+            <TextInput style={styles.field}
+                keyboardType='default'
+                placeholder='Nombre'
+                onChangeText={text => setName(text)}
+                value={name} />
+            <TextInput style={styles.field}
+                keyboardType='default'
+                placeholder='password'
+                secureTextEntry={true}
+                onChangeText={text => setPassword(text)}
+                value={password} />
+            <Pressable onPress={() => OnSubmit(email, password, name)}>
+                <Text style={styles.text}> Registrarme </Text>
+            </Pressable>
+            <Pressable
+                onPress={() => props.navigation.navigate('Login')}>
+                <Text style={styles.text}>Ya tengo cuenta </Text>
+            </Pressable>
+        </View>
+    )
 }
 const styles = StyleSheet.create({
+
     pres: {
-        padding: 20,
-        marginTop: 10,
+
+        flex: 1,
+        padding: 24,
+        justifyContent: "center",
+        backgroundColor: "#F4F5F7",
 
     },
+
     field: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
+
+        backgroundColor: "#FFFFFF",
+        paddingVertical: 14,
+        paddingHorizontal: 16,
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: "solid",
-        borderRadius: 6,
+        borderColor: "#E1E4E8",
+        borderRadius: 14,
         marginVertical: 10,
+        fontSize: 15,
+        color: "#111827",
 
     },
 
     text: {
 
-        backgroundColor: "white",
-
-        margin: 10,
-
+        backgroundColor: "#111827",
+        color: "#FFFFFF",
+        textAlign: "center",
+        marginVertical: 8,
         padding: 15,
+        borderRadius: 14,
+        fontWeight: "bold",
+        fontSize: 15,
 
-        borderRadius: 10,
+    },
+    titulo: {
 
-        elevation: 4
-    }
-})
+        fontSize: 26,
+        fontWeight: "bold",
+        marginBottom: 20,
+        color: "#111827",
+
+    },
+
+
+});
 export default Register

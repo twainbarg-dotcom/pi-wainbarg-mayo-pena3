@@ -14,7 +14,7 @@ function Home(props) {
 
     useEffect(() => {
 
-        db.collection("Posts").orderBy('createdAt','desc').onSnapshot(docs => {
+        db.collection("Posts").orderBy('createdAt', 'desc').onSnapshot(docs => {
 
             let posteo = [];
 
@@ -35,27 +35,41 @@ function Home(props) {
 
             setLoading(false);
 
-        }); 
+        });
         console.log(auth.currentUser)
 
     }, []);
     return (
         <View style={styles.flatlist}>
-
+            <Text style={styles.home}>Inicio</Text>
             <FlatList
                 data={posteo}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => <Post id={item.id} data={item.data} navigation={props.navigation}/>}            />
+                renderItem={({ item }) => <Post id={item.id} data={item.data} navigation={props.navigation} />} />
         </View>
 
     )
 }
 
 const styles = StyleSheet.create({
-  flatlist: {
-    width: '100%',
-    flex: 1
-  },
-})
+
+    flatlist: {
+        width: "100%",
+        flex: 1,
+        backgroundColor: "#F4F5F7",
+        paddingTop: 16,
+
+    },
+    home: {
+
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#111827",
+        marginHorizontal: 20,
+        marginBottom: 10,
+
+    }
+
+});
 
 export default Home
