@@ -13,7 +13,7 @@ function Register(props) {
             alert("Completá todos los campos");
             return;
         }
-        auth.createUserWithEmailAndPassword(email, pass, name)
+        auth.createUserWithEmailAndPassword(email, pass)
             .then(response => {
                 return db.collection("users").add({
                     owner: response.user.email,
