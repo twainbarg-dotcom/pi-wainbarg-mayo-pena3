@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet } from "react-native";
-import { Text } from "react-native";
-import { View, Pressable, TextInput } from "react-native";
+import { View, Pressable, TextInput, Text, StyleSheet } from "react-native";
 import { auth } from "../firebase/config";
 
 
@@ -36,9 +34,6 @@ function Login(props) {
 
         }
         auth.signInWithEmailAndPassword(email, pass)
-            .then((response) => {
-                props.navigation.navigate('HomeMenu');
-            })
             .catch(error => {
                 console.log(error)
                 if (error.code === 'auth/internal-error') {
@@ -63,7 +58,7 @@ function Login(props) {
                 value={password} />
 
             <Pressable
-                onPress={() => props.navigation.navigate('Register')}>
+                onPress={() => props.navigation.replace('Register')}>
                 <Text style={styles.text}>No tengo cuenta </Text>
             </Pressable>
             <Pressable

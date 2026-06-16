@@ -1,14 +1,10 @@
-import { Text } from "react-native";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet, Text, FlatList} from "react-native";
 import { auth, db } from "../firebase/config";
 import Post from "../components/Post";
-import { FlatList } from "react-native";
 import { useState, useEffect } from "react";
 
 function Profile(props) {
     const [posteo, setPosteo] = useState([]);
-
-    const [loading, setLoading] = useState(true);
     const [nombre, setNombre] = useState("")
     function logout() {
     auth.signOut()
@@ -40,12 +36,8 @@ function Profile(props) {
             });
 
             setPosteo(posteo);
-            console.log(posteo)
-
-            setLoading(false);
 
         });
-        console.log(props)
     }, []);
     useEffect(() => {
 

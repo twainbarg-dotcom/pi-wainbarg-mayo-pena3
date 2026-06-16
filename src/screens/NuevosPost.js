@@ -1,11 +1,8 @@
-import { Text } from "react-native";
-import { View, Pressable, StyleSheet, TextInput } from "react-native";
-import { useState, useEffect } from "react";
+import { Text, View, Pressable, StyleSheet, TextInput } from "react-native";
+import { useState } from "react";
 import { auth, db } from "../firebase/config";
-import { FlatList } from "react-native-web";
 
 function NuevosPosts(props) {
-    const [email, setEmail] = useState("")
     const [comentarios, setComentarios] = useState("")
     function OnSubmit( comentarios) {
         db.collection('Posts').add({
@@ -28,7 +25,6 @@ function NuevosPosts(props) {
             <TextInput style={styles.field}
                 keyboardType='default'
                 placeholder='Escribi tu posteo'
-                secureTextEntry={false}
                 onChangeText={text => setComentarios(text)}
                 value={comentarios} />
 

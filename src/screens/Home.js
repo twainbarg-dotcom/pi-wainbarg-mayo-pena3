@@ -1,8 +1,6 @@
-import { Text } from "react-native";
-import { View, Pressable, StyleSheet, TextInput } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
-import { auth, db } from "../firebase/config";
-import { FlatList } from "react-native-web";
+import { db } from "../firebase/config";
 import Comentarios from "../components/Comentarios";
 import Post from "../components/Post";
 import Profile from "./Profile";
@@ -36,7 +34,6 @@ function Home(props) {
             setLoading(false);
 
         });
-        console.log(auth.currentUser)
 
     }, []);
     return (
